@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// React
+import React from "react";
+// Graphql
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+//Material UI
+import { withStyles } from "@material-ui/core/styles";
+
+// Components
+import MoviesList from "./components/MoviesList";
+import Header from './components/Header';
+
+
+const client = new ApolloClient({
+  uri: "https://api.graph.cool/simple/v1/cjt2za2zj2u0w0175wlhamwa6"
+});
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
+
+const App = props => {
+  const { classes } = props;
+  return (
+    <ApolloProvider client={client}>
+      <div className={classes.root}>
+        <Header />
+        <MoviesList />
       </div>
-    );
-  }
-}
+    </ApolloProvider>
+  );
+};
 
-export default App;
+export default withStyles(styles)(App);
