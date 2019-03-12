@@ -127,7 +127,6 @@ class Modal extends Component {
       edit = false,
       mutation,
       id,
-      movie = {} 
     } = this.props;
 
     const { genre, actors, title, actorsData} = this.state;
